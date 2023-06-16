@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638187509046071972
-    m_Hash: 2465031950
+      ticks: 638225510293174444
+    m_Hash: 2691966384
   m_LockFileStatus:
     m_FilePath: C:/Users/RJ/UnityProjects/TFC tests/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638187509247211997
-    m_Hash: 1291079873
+      ticks: 638225510293261555
+    m_Hash: 444606893
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -108,6 +108,7 @@ m_ResolvedPackages:
     - 2.0.1
     - 2.0.3
     - 2.0.4
+    - 2.0.5
     - 2.1.0-preview.3
     - 2.1.0-preview.5
     - 2.1.0-preview.6
@@ -116,10 +117,11 @@ m_ResolvedPackages:
     - 2.0.1
     - 2.0.3
     - 2.0.4
+    - 2.0.5
     - 2.1.0-preview.3
     - 2.1.0-preview.5
     - 2.1.0-preview.6
-    verified: 2.0.4
+    verified: 2.0.5
   dependencies: []
   resolvedDependencies: []
   keywords:
@@ -211,7 +213,7 @@ m_ResolvedPackages:
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
   - name: com.unity.ide.rider
-    version: 3.0.18
+    version: 3.0.24
   - name: com.unity.ide.vscode
     version: 1.2.5
   - name: com.unity.editorcoroutines
@@ -244,12 +246,12 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.1
     nextVersion: 
-- packageId: com.unity.ide.rider@3.0.18
+- packageId: com.unity.ide.rider@3.0.24
   testable: 0
   isDirectDependency: 1
-  version: 3.0.18
+  version: 3.0.24
   source: 1
-  resolvedPath: C:\Users\RJ\UnityProjects\TFC tests\Library\PackageCache\com.unity.ide.rider@3.0.18
+  resolvedPath: C:\Users\RJ\UnityProjects\TFC tests\Library\PackageCache\com.unity.ide.rider@3.0.24
   assetPath: Packages/com.unity.ide.rider
   name: com.unity.ide.rider
   displayName: JetBrains Rider Editor
@@ -258,7 +260,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: The JetBrains Rider Editor package provides an integration for using
     the JetBrains Rider IDE as a code editor for Unity. It adds support for generating
     .csproj files for code completion and auto-discovery of installations.
@@ -302,11 +304,15 @@ m_ResolvedPackages:
     - 3.0.18
     - 3.0.20
     - 3.0.21
+    - 3.0.22
+    - 3.0.24
     compatible:
     - 3.0.18
     - 3.0.20
     - 3.0.21
-    verified: 3.0.21
+    - 3.0.22
+    - 3.0.24
+    verified: 3.0.24
   dependencies:
   - name: com.unity.ext.nunit
     version: 1.0.6
@@ -324,13 +330,13 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 638088746970000000
+  datePublishedTicks: 638221653400000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.rider@3.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.rider.git
-    revision: b40b39e6834c2915637f431d002d1f3dd8ec9ce5
+    revision: f5decc642e3618ce1c6827d47318260e61d64714
     path: 
   unityLifecycle:
     version: 3.0.18
@@ -537,6 +543,8 @@ m_ResolvedPackages:
     - 1.3.2
     - 1.3.3
     - 1.3.4
+    - 1.3.5
+    - 1.3.7
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -549,6 +557,8 @@ m_ResolvedPackages:
     - 1.3.2
     - 1.3.3
     - 1.3.4
+    - 1.3.5
+    - 1.3.7
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -861,6 +871,7 @@ m_ResolvedPackages:
     - 1.8.0
     - 1.8.1
     - 1.8.2
+    - 1.8.3
     compatible:
     - 1.6.4
     - 1.6.5
@@ -874,6 +885,7 @@ m_ResolvedPackages:
     - 1.8.0
     - 1.8.1
     - 1.8.2
+    - 1.8.3
     verified: 1.6.5
   dependencies:
   - name: com.unity.modules.director
@@ -3082,10 +3094,12 @@ m_ResolvedPackages:
     - 1.2.1
     - 1.2.2
     - 1.2.3
+    - 1.2.4
     compatible:
     - 1.2.2
     - 1.2.3
-    verified: 1.2.3
+    - 1.2.4
+    verified: 1.2.4
   dependencies:
   - name: com.unity.test-framework
     version: 1.0.16

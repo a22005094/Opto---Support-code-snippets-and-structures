@@ -352,9 +352,9 @@
 "Assets/Models/Core/Session.cs"
 "Assets/Models/DataManager.cs"
 "Assets/Models/ElasticsearchManager.cs"
+"Assets/Scripts/CubeMovement.cs"
 "Assets/Scripts/ManagerScript.cs"
 "Assets/Scripts/TestDataScript.cs"
-"Assets/Scripts/TesteScript.cs"
 -langversion:9.0
 
 /deterministic
