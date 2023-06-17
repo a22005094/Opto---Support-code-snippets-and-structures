@@ -11,14 +11,17 @@ namespace Assets.Models
         // its own completion results/metrics (time elapsed, score, etc.)
 
         // TODO:
-        // - add visibility rules to properties (private set Duration, private set Score, private set StartAt, private set IsSaved)
+        // - reassess visibility rules in attributes (private set Duration, private set Score, private set StartAt, private set IsSaved, ...)
 
         // * Attributes
-        public string ChallengeId { get; }              // Family/Type of exercise presented
-        public short DurationSeconds { get; set; }      // Time elapsed to complete the exercise        
-        public short Score { get; set; }                // Exercise completion score
-        public DateTime StartAt { get; set; }           // Timestamp when this exercise was completed.
+        public string ChallengeId;              // Family/Type of exercise presented
+        public short DurationSeconds;      // Time elapsed to complete the exercise        
+        public short Score;                // Exercise completion score
+        public DateTime StartAt;           // Timestamp when this exercise was completed.
 
+        //
+        // TODO check if this field can be still ignored from sending to Elasticsearch if Property is refactored to Attribute
+        //
         [Ignore]                                        // [Ignore] means this field is not mapped to Elasticsearch.
         public bool IsSaved { get; private set; }       // Indicates if this object has been saved to ElasticSearch.
 
@@ -32,7 +35,6 @@ namespace Assets.Models
 
 
         // * Methods
-
         public void Start() => StartAt = DateTime.Now;     // simple setter to mark the current date&time when an exercise begins.
 
         public void Complete(short duration, short finalScore)
@@ -45,8 +47,7 @@ namespace Assets.Models
         public void Mark_As_Saved() => IsSaved = true;
 
 
-        // * Outputting object data
-
+        // * Output object data
         public override string ToString()
         {
             return $"[ ChallengeId = {ChallengeId} | Duration (s) = {DurationSeconds} |"

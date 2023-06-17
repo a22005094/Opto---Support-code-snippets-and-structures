@@ -12,22 +12,29 @@ namespace Assets.Models
         // Session times will be calculated from Start & End timestamps.
 
         // TODO:
-        // - add visibility rules to properties (private set StartAt, private set EndAt, private set Exercises)
+        // - reassess visibility rules in attributes (private set StartAt, private set EndAt, private set Exercises, ...)
 
         // * Attributes
-        public string DeviceId { get; }                 // DeviceID where the session is/was happening
-        public string UserId { get; }                   // UserID this session belongs to
+        public string DeviceId;            // DeviceID where the session is/was happening
+        public string UserId;              // UserID this session belongs to
 
-        public DateTime StartAt { get; set; }           // Timestamp beginning of session
-        public DateTime EndAt { get; set; }             // Timestamp end of session
+        public DateTime StartAt;           // Timestamp beginning of session
+        public DateTime EndAt;             // Timestamp end of session
 
-        [Nested]                                        // [Nested] will output each exercise here as its own object
-        public List<Exercise> Exercises { get; set; }   // List of exercises completed during this Session
+        //
+        // TODO retest if exercises are still being sent correctly to Elasticsearch after refactoring this field from Property to Attribute
+        //
+        // [Nested]                        // [Nested] will output each exercise here as its own object
+        public List<Exercise> Exercises;   // List of exercises completed during this Session
 
+        //
+        // TODO check if this field can be still ignored from sending to Elasticsearch if Property is refactored to Attribute
+        //
         [Ignore]                                        // [Ignore] means this field is not mapped to Elasticsearch.
         public bool IsSaved { get; private set; }       // Indicates if this object has been saved to ElasticSearch.
 
 
+        
         // * Constructor(s)
         public Session(string devId, string uId)
         {
@@ -39,7 +46,6 @@ namespace Assets.Models
 
 
         // * Methods
-
         public void Start() => StartAt = DateTime.Now;
 
         public void Complete() => EndAt = DateTime.Now;
@@ -47,8 +53,7 @@ namespace Assets.Models
         public void Mark_As_Saved() => IsSaved = true;
 
 
-        // * Outputting object data
-
+        // * Output object data
         private string Print_Exercises()
         {
             if (Exercises == null || Exercises.Count == 0) return "";

@@ -43,16 +43,19 @@
   <ItemGroup>
      <Compile Include="Assets\Models\Core\Session.cs" />
      <Compile Include="Assets\Scripts\TestDataScript.cs" />
-     <Compile Include="Assets\Models\ElasticsearchManager.cs" />
+     <Compile Include="Assets\Models\Managers\ElasticsearchManager.cs" />
      <Compile Include="Assets\Scripts\ManagerScript.cs" />
      <Compile Include="Assets\Models\Core\Exercise.cs" />
-     <Compile Include="Assets\Models\DataManager.cs" />
+     <Compile Include="Assets\Models\Managers\DataManager.cs" />
      <Compile Include="Assets\Scripts\CubeMovement.cs" />
+     <Compile Include="Assets\Models\Managers\FileIOManager.cs" />
+     <Compile Include="Assets\Models\Core\UserInfo.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\References" />
      <Folder Include="Assets\Scripts" />
      <Folder Include="Assets\Models\Core" />
      <Folder Include="Assets\Models" />
+     <Folder Include="Assets\Models\Managers" />
      <Folder Include="Assets\Scenes" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity 2021.3.18f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

@@ -1,4 +1,4 @@
-using Assets.Models;
+using Assets.Models.Managers;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -12,37 +12,44 @@ public class ManagerScript : MonoBehaviour
     // - Example exercises and sessions are being generated ad-hoc or randomly, to debug service functionality.
     //
 
+
+    // * 1. Create index on Elasticsearch
     // async void Start()
     // {
     //     var manager = DataManager.Instance;
     //     await Task.Run(() => manager.CreateIndexSessions());
+    //     await Task.Delay(5000);
+    //     await Task.Run(() => manager.CreateIndexExercises());
     // }
 
-    async void Start()
-    {
-        var manager = DataManager.Instance;
 
-        // Create Indices
-        await Task.Run(() => manager.CreateIndexSessions());
-        await Task.Run(() => manager.CreateIndexExercises());
+    // * 2. Generate N Sessions with random data
+    // async void Start()
+    // {
+    //     var manager = DataManager.Instance;
+    //
+    //     // Create Indices
+    //     await Task.Run(() => manager.CreateIndexSessions());
+    //     await Task.Run(() => manager.CreateIndexExercises());
+    //
+    //     int numberOfSessions = 5;
+    //
+    //     // *** Version 1 - generates N random Sessions ***
+    //     for (int i = 1; i <= numberOfSessions; i++)
+    //     {
+    //         // TODO Uncomment
+    //         //manager.GenerateRandomSession();
+    //         //Debug.Log("Sent session #" + i);
+    //         await Task.Delay(500);
+    //     }
+    //
+    //     // // *** Version 2 - generates 1 random Session ***
+    //     // manager.GenerateSpecificSession();
+    //     // Debug.Log("Sent session!!");
+    // }
 
-        int numberOfSessions = 5;
 
-        // *** Version 1 - generates N random Sessions ***
-        for (int i = 1; i <= numberOfSessions; i++)
-        {
-            // TODO Uncomment
-            //manager.GenerateRandomSession();
-            //Debug.Log("Sent session #" + i);
-            await Task.Delay(500);
-        }
-
-        // // *** Version 2 - generates 1 random Session ***
-        // manager.GenerateSpecificSession();
-        // Debug.Log("Sent session!!");
-    }
-
-    // // Start is called before the first frame update
+    // * 3. Example usage sequence
     // async void Start()
     // {
     //     // ** Exemplos de utilizacao da classe gestora **
@@ -72,30 +79,11 @@ public class ManagerScript : MonoBehaviour
     //     score = 100;
     //     // ... ( Time passed meanwhile... user completing the exercise ) ...
     //     manager.Complete_Exercise(duration, score);
-
+    //
     //     // Testing delay...
     //     await Task.Delay(10000);
-
+    //
     //     // Session End - example
     //     manager.Complete_Session();
-
-    //     // ------------------
-    //     // Other API examples
-    //     // ------------------
-
-    //     // * Create a new Index
-    //     // manager.Create_Index_DeleteThis_Later("carros", new Car { Matricula = "AA-BB-22", Cilindrada = 500 });
-
-    //     // * Submit session data
-    //     // ...
     // }
-
-    //async void Start()
-    //{
-    //    var manager = DataManager.Instance;
-    //    manager.CreateIndexSessions();
-    //    await Task.Delay(5000);
-    //    manager.CreateIndexExercises();
-    //}
-
 }

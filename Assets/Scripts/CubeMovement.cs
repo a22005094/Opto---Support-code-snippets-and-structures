@@ -1,9 +1,8 @@
 using UnityEngine;
 
-
 // [INFO]
-// Just a quick test script to make a gameObject movable.
-// Please, ignore this file.
+// IGNORE THIS FILE!
+// It's just a quick script to make the test Cube movable.
 
 
 public class CubeMovement : MonoBehaviour
@@ -11,7 +10,9 @@ public class CubeMovement : MonoBehaviour
     [SerializeField] float speedFactor = 0.09f;
 
     // Start is called before the first frame update
-    void Start() { }
+    void Start()
+    {
+    }
 
     // Update is called once per frame
     void Update()
