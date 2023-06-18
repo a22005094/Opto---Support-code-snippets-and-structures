@@ -10,32 +10,29 @@ namespace Assets.Models
         // It is responsible for identifying the kind of Exercise being done, and saving
         // its own completion results/metrics (time elapsed, score, etc.)
 
-        // TODO:
-        // - reassess visibility rules in attributes (private set Duration, private set Score, private set StartAt, private set IsSaved, ...)
 
         // * Attributes
-        public string ChallengeId;              // Family/Type of exercise presented
-        public short DurationSeconds;      // Time elapsed to complete the exercise        
-        public short Score;                // Exercise completion score
-        public DateTime StartAt;           // Timestamp when this exercise was completed.
+        // All were kept Public to maintain full support with NEST elasticsearch client.
+        public string ChallengeId { get; } // Family/Type of exercise presented
+        public short DurationSeconds { get; set; } // Time elapsed to complete the exercise        
+        public short Score { get; set; } // Exercise completion score
+        public DateTime StartAt { get; set; } // Timestamp when this exercise was completed.
 
-        //
-        // TODO check if this field can be still ignored from sending to Elasticsearch if Property is refactored to Attribute
-        //
-        [Ignore]                                        // [Ignore] means this field is not mapped to Elasticsearch.
-        public bool IsSaved { get; private set; }       // Indicates if this object has been saved to ElasticSearch.
+        [Ignore] // [Ignore] means this field will not be mapped to Elasticsearch.
+        public bool IsSaved { get; set; } // Indicates if this object has been saved to ElasticSearch.
 
 
         // * Constructor(s)
-        public Exercise(string challId)
+        public Exercise(string challengeId)
         {
             // Set here the parameters that are known from the beginning of an Exercise
-            ChallengeId = challId;
+            ChallengeId = challengeId;
         }
 
 
         // * Methods
-        public void Start() => StartAt = DateTime.Now;     // simple setter to mark the current date&time when an exercise begins.
+        public void Start() =>
+            StartAt = DateTime.Now; // simple setter to mark the current date&time when an exercise begins.
 
         public void Complete(short duration, short finalScore)
         {
@@ -51,8 +48,7 @@ namespace Assets.Models
         public override string ToString()
         {
             return $"[ ChallengeId = {ChallengeId} | Duration (s) = {DurationSeconds} |"
-               + $" Score = {Score} | StartAt = {StartAt.ToString("dd/MM/yyyy HH:mm:ss")} | Saved = {IsSaved}]";
+                   + $" Score = {Score} | StartAt = {StartAt.ToString("dd/MM/yyyy HH:mm:ss")} | Saved = {IsSaved}]";
         }
-
     }
 }

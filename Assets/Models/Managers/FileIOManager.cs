@@ -82,24 +82,44 @@ namespace Assets.Models.Managers
     }
     //
 
+    // Simple Enum to simplify target file selection when writing/reading from local storage, depending on the context.
+    // It doesn't make sense that an external entity outside of this manager knows the exact filenames of 
+    //  every object that should be saved/read from the device, but instead, they will know (by context) exactly what 
+    //  they want to manage.
+    public enum FileKind
+    {
+        User
+        // Add more here as necessary...
+    }
+
     public static class FileIOManager
     {
-        private const string DEFAULT_FILENAME = "saveData.json";
+        private static string GetFilenameFromFileKind(FileKind kind)
+        {
+            switch (kind)
+            {
+                case FileKind.User:
+                    return "userData.json";
+                default:
+                    return "";
+            }
+        }
 
-
-        public static void SaveObjectToDevice<T>(T objectToSave, string filename = DEFAULT_FILENAME)
+        public static void SaveObjectToDevice<T>(T objectToSave, FileKind fileKind)
         {
             // Saves an object into local file storage, depending on the platform's Persistent Data Directory.
             // The goal is to keep the data accessible between application runs. 
             // (For more info: https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html)
             // The object must be marked as [Serializable], so that it can be parsed into a JSON object.
             // By supporting Generics, allows to save any Class type (vs previous version, that was tied to a single Type)
-            // Defaults to a generic filename if the path is not specified.
 
             try
             {
                 // Serialize the object into JSON string
                 var jsonStr = JsonUtility.ToJson(objectToSave);
+
+                // Get filename for the intended Kind of File
+                var filename = GetFilenameFromFileKind(fileKind);
 
                 // NOTE: ".WriteAllText()" creates a new file, or overwrites if it already exists!
                 var path = Path.Combine(Application.persistentDataPath, filename);
@@ -111,7 +131,7 @@ namespace Assets.Models.Managers
             }
         }
 
-        public static T LoadObjectFromDevice<T>(string filename = DEFAULT_FILENAME)
+        public static T LoadObjectFromDevice<T>(FileKind fileKind)
         {
             // Attempts to load an Object from local file storage (JSON), according to the device's Persistent Data Directory.
             //  Follows the same rules as the SaveObject function, where the object to be fetched must be Serializable into JSON string -
@@ -119,11 +139,13 @@ namespace Assets.Models.Managers
             // If, however, the file is not found or data loading fails (either because it never existed, or, somehow, got corrupted),
             //  it will be marked as NULL, informing the program that a new file should be (over)written.
             // By supporting Generics, allows reading any saved Class type (vs previous version, that was tied to a single Type)
-            // Defaults to a generic loadPath if the path is not specified.
 
-
+            // object to return
             T loadedObject = default(T);
-            var path = Application.persistentDataPath + "/" + filename;
+
+            // Get filename for the intended Kind of File
+            var filename = GetFilenameFromFileKind(fileKind);
+            var path = Path.Combine(Application.persistentDataPath, filename);
 
             if (File.Exists(path))
             {

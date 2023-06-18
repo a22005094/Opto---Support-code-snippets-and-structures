@@ -350,11 +350,13 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Models/Core/Exercise.cs"
 "Assets/Models/Core/Session.cs"
-"Assets/Models/DataManager.cs"
-"Assets/Models/ElasticsearchManager.cs"
+"Assets/Models/Core/UserInfo.cs"
+"Assets/Models/Managers/DataManager.cs"
+"Assets/Models/Managers/ESManager.cs"
+"Assets/Models/Managers/FileIOManager.cs"
+"Assets/Scripts/CubeMovement.cs"
 "Assets/Scripts/ManagerScript.cs"
-"Assets/Scripts/TestDataScript.cs"
-"Assets/Scripts/TesteScript.cs"
+"Assets/Scripts/snippets1.cs"
 -langversion:9.0
 
 /deterministic

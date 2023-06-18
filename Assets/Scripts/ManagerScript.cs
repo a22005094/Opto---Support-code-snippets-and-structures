@@ -1,3 +1,4 @@
+using System;
 using Assets.Models.Managers;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -13,7 +14,9 @@ public class ManagerScript : MonoBehaviour
     //
 
 
+    // ----------------------------------
     // * 1. Create index on Elasticsearch
+    // ----------------------------------
     // async void Start()
     // {
     //     var manager = DataManager.Instance;
@@ -23,67 +26,90 @@ public class ManagerScript : MonoBehaviour
     // }
 
 
-    // * 2. Generate N Sessions with random data
+    // ----------------------------------
+    // * 2. Delete index from Elasticsearch
+    // ----------------------------------
+    // NOTE: This method DELETES ALL DATA along with the Index! Use only when strictly necessary.
+    // private void Start()
+    // {
+    //     var esManager = ESManager.Instance;
+    //     esManager.DeleteIndex(ESManager.EXERCISES_INDEX);
+    //     esManager.DeleteIndex(ESManager.SESSIONS_INDEX);
+    // }
+
+
+    // ----------------------------------
+    // * 3. Generate N Sessions with random data
+    // ----------------------------------
     // async void Start()
     // {
     //     var manager = DataManager.Instance;
     //
-    //     // Create Indices
+    //     // Create [Sessions] + [Exercises] Indices (if they don't exist)
     //     await Task.Run(() => manager.CreateIndexSessions());
     //     await Task.Run(() => manager.CreateIndexExercises());
     //
-    //     int numberOfSessions = 5;
+    //     // -----------------
+    //     // ** Define here the # of random Sessions to generate ** 
+    //     int nrSessions = 10;
+    //     // -----------------
     //
-    //     // *** Version 1 - generates N random Sessions ***
-    //     for (int i = 1; i <= numberOfSessions; i++)
+    //     // * Generate [nrSessions] Sessions *
+    //     for (int i = 1; i <= nrSessions; i++)
     //     {
-    //         // TODO Uncomment
-    //         //manager.GenerateRandomSession();
-    //         //Debug.Log("Sent session #" + i);
+    //         Debug.Log("Sending session #" + i);
+    //         manager.GenerateRandomSession();
+    //
+    //         // Small delay between operations
     //         await Task.Delay(500);
     //     }
     //
-    //     // // *** Version 2 - generates 1 random Session ***
+    //     // * (OLD VERSION) Generate 1 specific Session *
+    //     // Debug.Log("Sending Session...");
     //     // manager.GenerateSpecificSession();
-    //     // Debug.Log("Sent session!!");
     // }
 
 
-    // * 3. Example usage sequence
+    // ----------------------------------
+    // * 4. Example Use case flow
+    // ----------------------------------
     // async void Start()
     // {
-    //     // ** Exemplos de utilizacao da classe gestora **
-    //
     //     // Load DataManager singleton instance
     //     var manager = DataManager.Instance;
     //
-    //     // Session Start - example
-    //     string device_id = "DEVICE_1";
-    //     string user_id = "USER_1";
-    //     manager.Start_Session(device_id, user_id);
+    //     // (EXAMPLE) Session Start
+    //     manager.Start_Session();
     //
-    //     // Exercise example
-    //     string challenge_id = "EXERCICIO_OBJETOS_ESTATICOS_1";
-    //     short duration = 15;    // segundos
-    //     short score = 50;       // TBD quantificacao de valores para Scores
-    //     manager.Start_Exercise(challenge_id);
-    //     // ... ( Time passed meanwhile... user completing the exercise ) ...
+    //     // (EXAMPLE) Exercise flow 1
+    //     // Initial exercise start
+    //     string challengeId = "EXERCICIO_OBJETOS_ESTATICOS_1";
+    //     manager.Start_Exercise(challengeId);
+    //
+    //     // Metrics are then stored...
+    //     short duration = 15;
+    //     short score = 50;
+    //
+    //     // Complete exercise
     //     manager.Complete_Exercise(duration, score);
     //
-    //     // Testing delay...
-    //     await Task.Delay(10000);
+    //     //// * Testing a delay *
+    //     // await Task.Delay(5000);
     //
-    //     // Exercise example 2
-    //     manager.Start_Exercise("EXERCICIO_2");
-    //     duration = 30;
-    //     score = 100;
-    //     // ... ( Time passed meanwhile... user completing the exercise ) ...
+    //     // (EXAMPLE) Exercise flow 2
+    //     challengeId = "EXERCICIO_2";
+    //     manager.Start_Exercise(challengeId);
+    //     // ...
+    //     duration = 65;
+    //     score = 13;
     //     manager.Complete_Exercise(duration, score);
     //
-    //     // Testing delay...
-    //     await Task.Delay(10000);
+    //     //// * Testing a delay *
+    //     // await Task.Delay(5000);
     //
-    //     // Session End - example
+    //     // (EXAMPLE) Session completed
     //     manager.Complete_Session();
     // }
+
+    //
 }
