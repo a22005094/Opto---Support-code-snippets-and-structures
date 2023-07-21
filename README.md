@@ -2,7 +2,7 @@
 
 This is a secondary project for DEISI343 Final Course Project's main Unity project, Opto.
 With the exception of the "Extra deliverables" folder on the project root, all developments are located inside the "Assets" directory, namely the Models and Scripts folders.
-Three goals are intended on this side-project:
+Three goals are intended here:
 
 1. Implement a communication module to report treatment results, and test the whole Back-end service application stack(Nginx, Elasticsearch, Kibana and dashboards)
 2. Data generation and management structures
@@ -28,4 +28,4 @@ Two additional data structures were also implemented as Singleton objects (folde
 
 
 ## 3 - Other helpful snippets
-Other code experiments have also been provided here, to be possibly used in the future, such as a snippet for local device I/O file operations, namely for persisting and loading a JSON file on a mobile phone running a Unity project.
+Other code experiments have also been provided here, such as a snippet for local device I/O file operations, namely for persisting and loading JSON files on a mobile phone running a Unity application (likely to be used on future updates of the Opto application).
