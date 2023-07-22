@@ -1,0 +1,78 @@
+---
+
+Description:
+
+This pipeline handles time-relevant and date-relevant information about incoming Session data, namely: 1) From the StartTime: extract the Hour, Day, Month, Year; 2) From the EndTime: extract the Hour; 3) Calculate session duration in Minutes, from Start and End times.
+
+---
+
+Pipeline script (trimmed Painless script source):
+
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+
+// *** 1. Transformations on StartAt field ***
+LocalDateTime dtStartAt = LocalDateTime.parse(ctx['startAt'], formatter);
+
+// Fil relevant StartAt metrics
+ctx.startAtYear = dtStartAt.get(ChronoField.YEAR);
+ctx.startAtMonth = dtStartAt.get(ChronoField.MONTH_OF_YEAR);
+ctx.startAtDay = dtStartAt.get(ChronoField.DAY_OF_MONTH);
+ctx.startAtHour = dtStartAt.get(ChronoField.HOUR_OF_DAY);
+ctx.WeekOfYear = dtStartAt.get(ChronoField.ALIGNED_WEEK_OF_YEAR);
+
+// Set DayOfWeek parameter, adapted to go from Sunday (1) to Saturday (7)
+if (dtStartAt.get(ChronoField.DAY_OF_WEEK) == 7) {
+    ctx.DayOfWeek = 1;
+} else {
+    ctx.DayOfWeek = (dtStartAt.get(ChronoField.DAY_OF_WEEK)) + 1;
+}
+
+// *** 2. Transformations on EndAt field ***
+LocalDateTime dtEndAt = LocalDateTime.parse(ctx['endAt'], formatter);
+// Fil relevant metrics
+ctx.endAtHour = dtEndAt.get(ChronoField.HOUR_OF_DAY);
+
+// *** 3. Calculate the Duration of the Session (minutes) ***
+// Calculations are done from both LocalDateTime objects comparison
+ctx.sessionDurationMinutes = ChronoUnit.MINUTES.between(dtStartAt, dtEndAt);
+ctx.GoalReached = (ctx.sessionDurationMinutes >= 30);
+
+// *** 4. Get the number of Exercises in the Document ***
+// This will help with data aggregation functions, for Visualization purposes.
+// (Example: mean number of exercises per session)
+ctx.NumberOfExercises = ctx.exercises.size()
+
+---
+
+Processors (long version):
+
+[
+  {
+    "date": {
+      "field": "startAt",
+      "formats": [
+        "ISO8601"
+      ],
+      "target_field": "startAt",
+      "output_format": "yyyy-MM-dd'T'HH:mm:ss",
+      "description": "(Pre-requisite) Parse startAt to [yyyy-MM-dd'T'HH:mm:ss] dateTime format"
+    }
+  },
+  {
+    "date": {
+      "field": "endAt",
+      "formats": [
+        "ISO8601"
+      ],
+      "target_field": "endAt",
+      "output_format": "yyyy-MM-dd'T'HH:mm:ss",
+      "description": "(Pre-requisite) Parse endAt to [yyyy-MM-dd'T'HH:mm:ss] dateTime format"
+    }
+  },
+  {
+    "script": {
+      "source": "DateTimeFormatter formatter = DateTimeFormatter.ofPattern(\"yyyy-MM-dd'T'HH:mm:ss\");\r\n\r\n// *** 1. Transformations on StartAt field ***\r\nLocalDateTime dtStartAt = LocalDateTime.parse(ctx['startAt'], formatter);\r\n\r\n// Fil relevant StartAt metrics\r\nctx.startAtYear = dtStartAt.get(ChronoField.YEAR);\r\nctx.startAtMonth = dtStartAt.get(ChronoField.MONTH_OF_YEAR);\r\nctx.startAtDay = dtStartAt.get(ChronoField.DAY_OF_MONTH);\r\nctx.startAtHour = dtStartAt.get(ChronoField.HOUR_OF_DAY);\r\nctx.WeekOfYear = dtStartAt.get(ChronoField.ALIGNED_WEEK_OF_YEAR);\r\n\r\n// Set DayOfWeek parameter, adapted to go from Sunday (1) to Saturday (7)\r\nif (dtStartAt.get(ChronoField.DAY_OF_WEEK) == 7) {\r\n    ctx.DayOfWeek = 1;\r\n} else {\r\n    ctx.DayOfWeek = (dtStartAt.get(ChronoField.DAY_OF_WEEK)) + 1;\r\n}\r\n\r\n// *** 2. Transformations on EndAt field ***\r\nLocalDateTime dtEndAt = LocalDateTime.parse(ctx['endAt'], formatter);\r\n// Fil relevant metrics\r\nctx.endAtHour = dtEndAt.get(ChronoField.HOUR_OF_DAY);\r\n\r\n// *** 3. Calculate the Duration of the Session (minutes) ***\r\n// Calculations are done from both LocalDateTime objects comparison\r\nctx.sessionDurationMinutes = ChronoUnit.MINUTES.between(dtStartAt, dtEndAt);\r\nctx.GoalReached = (ctx.sessionDurationMinutes >= 30);\r\n\r\n// *** 4. Get the number of Exercises in the Document ***\r\n// This will help with data aggregation functions, for Visualization purposes.\r\n// (Example: mean number of exercises per session)\r\nctx.NumberOfExercises = ctx.exercises.size()\r\n\r\n\r\n",
+      "description": "Fill startAt & endAt metrics"
+    }
+  }
+]

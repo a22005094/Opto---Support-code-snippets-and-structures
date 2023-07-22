@@ -1,0 +1,101 @@
+{
+    "sessions": {
+        "aliases": {},
+        "mappings": {
+            "properties": {
+                "DayOfWeek": {
+                    "type": "long"
+                },
+                "GoalReached": {
+                    "type": "boolean"
+                },
+                "NumberOfExercises": {
+                    "type": "long"
+                },
+                "NumberOfExercisesFailed": {
+                    "type": "long"
+                },
+                "NumberOfExercisesPassed": {
+                    "type": "long"
+                },
+                "WeekOfYear": {
+                    "type": "long"
+                },
+                "endAt": {
+                    "type": "date"
+                },
+                "endAtHour": {
+                    "type": "long"
+                },
+                "exercises": {
+                    "properties": {
+                        "challengeId": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword",
+                                    "ignore_above": 256
+                                }
+                            }
+                        },
+                        "durationSeconds": {
+                            "type": "long"
+                        },
+                        "score": {
+                            "type": "long"
+                        },
+                        "startAt": {
+                            "type": "date"
+                        }
+                    }
+                },
+                "sessionDurationMinutes": {
+                    "type": "long"
+                },
+                "startAt": {
+                    "type": "date"
+                },
+                "startAtDay": {
+                    "type": "long"
+                },
+                "startAtHour": {
+                    "type": "long"
+                },
+                "startAtMonth": {
+                    "type": "long"
+                },
+                "startAtYear": {
+                    "type": "long"
+                },
+                "userId": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                }
+            }
+        },
+        "settings": {
+            "index": {
+                "routing": {
+                    "allocation": {
+                        "include": {
+                            "_tier_preference": "data_content"
+                        }
+                    }
+                },
+                "number_of_shards": "1",
+                "provided_name": "sessions",
+                "creation_date": "1689974852209",
+                "number_of_replicas": "1",
+                "uuid": "vqdUk7cuR52o6WcO-hLj0g",
+                "version": {
+                    "created": "8080299"
+                }
+            }
+        }
+    }
+}

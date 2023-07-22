@@ -1,0 +1,152 @@
+----------------------------------------------------------------------------------------------------
+
+1- Link instalacao: 
+   > https://www.elastic.co/guide/en/kibana/8.6/deb.html#install-deb
+   > wget https://artifacts.elastic.co/downloads/kibana/kibana-8.8.0-amd64.deb
+   > sudo dpkg -i kibana-8.8.0-amd64.deb
+      
+	ubuntu@ip-10-0-1-9:~/Downloads$ sudo dpkg -i kibana-8.8.0-amd64.deb
+	 Selecting previously unselected package kibana.
+	 (Reading database ... 95235 files and directories currently installed.)
+	 Preparing to unpack kibana-8.8.0-amd64.deb ...
+	 Unpacking kibana (8.8.0) ...
+	 Setting up kibana (8.8.0) ...
+	 Creating kibana group... OK
+	 Creating kibana user... OK
+	 Created Kibana keystore in /etc/kibana/kibana.keystore
+	ubuntu@ip-10-0-1-9:~/Downloads$
+      
+2- Gerar enrollment token para acesso ao Kibana, a partir do Elasticsearch:
+   > /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
+
+3- (deleted)
+
+4- (Opcional) Mudou-se a password do user [kibana_system], para '123123'
+
+5- Ao aceder via browser para fazer o setup do Kibana, tentou-se fazer uma configuração mais cuidadosa, pela opção "Manually Configure",
+   mas devolveu erros insistentemente. Deste modo, acabou por se fazer a configuração sugerida por default na página, e que já teve sucesso.
+
+[!]
+6- Após setup inicial, escolher as Integrations a utilizar.
+ -> Fiquei na dúvida entre 2 opções de Elastic: [Elasticsearch] e [Elasticsearch .NET Client].
+ -> O que usamos é a segunda opção, no entanto, ao abrir, apenas tem umas linhas de instrução e NÃO tem opção para "inserir integração"... e não se adicionou nenhum.
+ -> Inseriu-se apenas a integração com "Kibana" (as expected here...)
+	> Integration name: [Kibana-1]
+	> Resto dos settings foram deixados por default (opções ativadas, valores por default, etc)...
+	> NOTA: Ao fazer este Setup com opções por default, apareceu a mensagem "Kibana integration added. To complete this integration, add Elastic Agent to your hosts to
+	        collect data and send it to Elastic Stack.". Aqui selecionou-se a opção "Add Elastic Agent to your hosts".
+
+7- Depois, acedeu-se ao Kibana, selecionou-se Dashboard e criou-se uma nova "Visualization", integrando o índice [Exercises] que foi criado para testes.
+   -> Tentou-se depois um par de configurações para que os dados lá inseridos começassem a aparecer ... Até agora sem sucesso.
+   -> Em alternativa, pode-se apenas lançar o Kibana no modo "Discovery", para efeitos de consultas de dados.
+
+7- (Opcional) Nas settings do Kibana, na secção de "Data views", pode-se selecionar uma data view diferente para abrir por default quando se lança a página, pois de momento
+   está a insistir em abrir sempre os Logs, que não vamos preencher (AFAIK).
+   
+   -----------
+   
+   O Kibana oferece duas opções interessantes:
+   
+   -> DISCOVERY: Para "explorar os nossos Documentos". Muito bom p/ consulta e filtragem simples de dados entre prazos, mas pouco sofisticado, pois aqui não
+                 se geram Visualizações; Será apenas mais para pesquisas e consultas "in-house".
+
+   -> DASHBOARD: Onde, efetivamente, "a magia das Visualizações" acontece; é onde se constroem dashboards e se fazem visualizações personalizadas, 
+                 onde os documentos são aglomerados para efeitos de análise e comparações dos dados armazenados nos Documentos... etc.
+
+        Notas sobre Dashboards:
+   	- Podemos criar MÚLTIPLOS dashboards; não precisamos "ter medo" de alterar e brincar num Dashboard para criar e testar visualizações como for pretendido,
+   	  pois não vai ser a única forma possível para "produzir visualizações" sobre os dados. Pode-se fazer visualizações em formato Chart, Tabelas, Mapas... etc.
+
+   	- ...
+
+----------------------------------------------------------------------------------------------------
+
+###########
+   NOTAS
+###########
+
+- No nosso projeto será ideal trabalharmos com Indexes no Elasticsearch. 
+  Entendo indexes como serem um aglomerador de registos (Documentos) que façam sentido num mesmo contexto, ainda que poderão ser não-estruturados.
+  Podemos ver Indexes para o Elasticsearch, como as Tabelas são para as BD relacionais. 
+
+- Caso tenhamos de fazer a inserção de um Verification Token mais para a frente (IGNORAR ESTE PEDIDO NO SETUP INICIAL), 
+  é neste programa: @[/usr/share/kibana/bin/kibana-verification-code]
+
+- Parece haver um pressuposto assumido na Stack do Elastic, que o utilizador correto 
+  para acessos Kibana é o [kibana_system]. Existe também o [kibana], mas está deprecated.
+
+- ESTÁ SOB ANÁLISE a necessidade de ter no Kibana, o logging de dados dos Elastic Agents em contexto do nosso Projeto. Muito provavelmente isto será desativado.
+
+- Start & Stop Kibana:
+  --> User: [kibana_system], Password: [123123].
+  --> sudo systemctl start kibana.service
+  --> sudo systemctl stop kibana.service
+
+- NOTA: O acesso ao Kibana só está a funcionar em Browser via HTTP, sem HTTPS...
+
+- NOTA: O Kibana faz pesquisas nas Data Views por um campo que se pode configurar para servir de Timestamp temporal.
+        Neste caso, para os Exercises, mapeei o DoneAt do exercicio para ser o campo de Timestamp. 
+        Ao inserirmos novos Documents com datas antigas/futuras nesse campo, essa DataHora vai ser considerada como o momento em q foi inserido, e portanto:
+        -> É POSSIVEL INSERIR COISAS PARA NO PASSSADO E NO FUTURO. AS PESQUISAS EM PRAZOS TEMPORAIS NO Kibana DEVERÃO REFLETIR OS TIMESTAMPS DOS DOCUMENTOS, PARA APARECEREM. 
+
+- Se entendi corretamente, chamam-se "buckets" às divisões/segregações de dados que se fazem por intervalo de tempo.
+  EXEMPLO: para termos o nº de exercícios diário, pode-se desenhar um gráfico de barras com as contagens diárias, dispondo de 1 bucket  
+  com a contagem em cada dia.
+
+- IMPORTANTE: Pelo que entendi, uma das formas de fazer compartilhamento de Dashboards é via Embed Code (HTML + JS ??), onde poderemos também +- configurar que partes da
+	      Dashboard é que serão visíveis e interagíveis ao lhe aceder.
+	      Caso no Kibana não venha a ser possível fornecer diretamente um link "online" e direto de forma fácil, para que os Utentes possam aceder ao seu histórico de
+	      evolução no tratamento, uma coisa que se poderá fazer é construir na mesma um conjunto de páginas Web (powered by, example, Django??), 
+	      e dedicar uma secção com injeção deste Embed Code da Dashboard, servindo como painel para acompanharem a evolução do tratamento.
+	      ATENÇÃO: Fica no entanto, ainda por entender como resolver o desafio de filtrar as Visualizações para APENAS o que seja respetivo a esse Utente... 
+	UPDATE: Não parece estar a funcionar de forma muito "espetacular"...
+
+- DUVIDA: Pesquisei como fazer um Auto-increment de ID do Document inserido, e aparentemente, tal não é suportado... como gerir isto então?!
+          Será necessário? ou basta usar a DataHora do Timestamp como a "Referência Unique" do Documento???
+          
+- No menu Criar/Editar Visualização do Kibana, na área por cima do gráfico existe uma secção com opções como:
+	> (!) TIPO DE GRÁFICO
+	> (!) Visual Options (ícone com Pincel) -> escolher como tratar missing values; escolher fill opacity do gráfico
+	> Legend (ícone ao lado de Lista) -> permite escolher onde colocar a legenda do gráfico, o tamanho, etc.
+	> (!) Left Axis + Bottom Axis + ... Axis -> config. visual dos Eixos, ex.: Títulos, Orientação, Escalas ("bounds", para balizar visualizações entre ex. [0-1000])
+
+
+- É possível juntar e intercetar datasets de Indexes completamente diferentes, numa só Visualização (se fizer sentido fazer...).
+  O Kibana faz isto sobrepondo os dados em Layers "uns em cima dos outros", e q serão configuráveis na parte direita 
+  da página "Criar/Editar Visualização".
+  Cada Layer pode até mesmo ser representado por um tipo de gráfico completamente diferente, por exemplo:
+  - usar "line graph" no Layer1
+  - usar "area chart"/"bar graph" no Layer2.
+
+- É interessante rever o vídeo 7 do "How-to Series: Kibana". Fala sobre pie charts, um exemplo de aplicação de
+  Filtro de valores no gráfico (neste caso países: "US" vs "Non-US"), faz conversão direta do gráfico para Treemap, 
+  e experimenta trocar diretamente as "Slices" a apresentar no gráfico, ao qual o Chart respondeu sempre muito bem.
+
+- É possível exportar search results diretamente no Discover, sem ter de ser sempre tudo visual / por Gráficos das Dashboards!
+  Basta gravar a pesquisa feita, e depois na opção "Share", podemos exportar por exemplo como CSV !!!
+  
+- (vídeo 9 do "How-to Series: Kibana")
+  É possível melhorar o nivel de interatividade numa Dashboard, configurando o que os clicks sobre os painéis da Dashboard deverão fazer.
+  (Por default fazem filtros pelos valores selecionados)... Chamam a isto configurar os "Drill-downs".
+  Pode-se até encaminhar para se fazer uma pesquisa no Google, ao selecionar um valor dum painel...!!
+  Além disto, também se pode criar "caixas de pesquisa" custom, por ex. p/ pesquisar só 1 atributo em específico, em "Controls -> Add Control".
+
+- Vídeo 11 do "How-to Series: Kibana", o "Filtering data", é MUITO IMPORTANTE! Fala sobre filtros no Discovery & Dashboard do Kibana.
+
+- Vídeo 14 do "How-to Series: Kibana" - é bastante interessante: mostra também um overview do modo Discovery do Kibana, e como se focar no que
+  realmente pretendemos nessa página, mas também COMO GERAR ALERTAS, c/ base no aparecimento de Documents c/ determinados Atributos e Valores.
+
+- DUVIDA: vi algures (site arcanys.com/elasticsearch-net-using-nest-part-1) que para configurar o elasticsearch e o kibana num dedicated server, na parte do Kibana temos de colocar "server.host: "0.0.0.0" (ok, já é feito), e depois, NA PARTE DO ELASTIC temos de colocar no YML os parâmetros "network.host: 0.0.0.0" (ok, já é feito) e "cluster.initial_master_nodes: node-1"... o que é este 2º parametro?!
+  >> Actually, tem para lá mais umas coisas depois... just look at the link if any issues arise.
+     https://www.arcanys.com/insights/details/elasticsearch-net-using-nest-part-1#!
+
+- Backup da referência ao package low-level do Elasticsearch.NET:
+<PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.0.7" />
+
+- DUVIDA: usar qual client? Elasticsearch.NET v8 (low-level) ou NEST v7.17 (high-level)?
+
+- Sobre o 'NEST' v7.17.x em compatibility mode, ver: https://www.elastic.co/guide/en/elasticsearch/client/net-api/7.17/connecting-to-elasticsearch-v8.html.
+
+
+
+

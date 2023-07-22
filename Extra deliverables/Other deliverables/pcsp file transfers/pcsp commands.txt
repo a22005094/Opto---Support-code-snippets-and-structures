@@ -1,0 +1,16 @@
+
+>> send file from EC2 Deisi343 Bastion to Windows (run on Windows):
+pscp -l ubuntu -i ../../tfc_ssh_keypair.ppk -v ubuntu@deisi343.pt:/home/ubuntu/elasticsearch.yml ./elasticsearch.yml
+
+>> send file from ec2 elasticsearch to ec2 deisi343 (run on Deisi343 machine):
+sudo scp -v -i tfc_ssh_keypair.pem ubuntu@10.0.2.171:/etc/kibana/kibana.yml ~/kibana.yml
+
+--------------
+Other commands
+--------------
+
+pscp -l ubuntu -i KeyPair_tfc.ppk -v ubuntu@deisi343.pt:~/ficheirosMaquinaTestes.zip ./ficheirosMaquinaTestes.zip
+$pscp -l ubuntu -i ../tfc_ssh_keypair.ppk -v ./favicon.ico ubuntu@deisi343.pt:/home/ubuntu/file_dest
+
+
+

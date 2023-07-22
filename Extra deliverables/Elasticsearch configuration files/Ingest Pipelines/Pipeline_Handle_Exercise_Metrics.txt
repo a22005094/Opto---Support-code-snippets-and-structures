@@ -1,0 +1,42 @@
+---
+
+Description:
+
+Ingest pipeline responsible for handling parameters on new data fields, related to exercises done during an incoming session document.
+
+---
+
+Pipeline script (trimmed Painless script source):
+
+int nrPassed = 0;
+int nrFailed = 0;
+
+for (obj in ctx.exercises)
+{
+   // (OLD) An initial implementation was made to fill a boolean value 
+   // per exercise, indicating if the exercise was Passed or not.
+   // It has then been changed to store the no. of Failed & Passed exercises 
+   // directly in the document root, facilitating the processes of 
+   // data visualization and metrics calculations.
+   // >> obj.Passed = (obj.score >= 5);
+
+   if (obj.score >= 5) nrPassed ++;
+   else nrFailed++;
+}
+
+ctx.NumberOfExercisesPassed = nrPassed;
+ctx.NumberOfExercisesFailed = nrFailed;
+
+
+---
+
+Processors (long version):
+
+[
+  {
+    "script": {
+      "source": "int nrPassed = 0;\r\nint nrFailed = 0;\r\n\r\nfor (obj in ctx.exercises)\r\n{\r\n   // (OLD) An initial implementation was made to fill a boolean value \r\n   // per exercise, indicating if the exercise was Passed or not.\r\n   // It has then been changed to store the no. of Failed & Passed exercises \r\n   // directly in the document root, facilitating the processes of \r\n   // data visualization and metrics calculations.\r\n   // >> obj.Passed = (obj.score >= 5);\r\n\r\n   if (obj.score >= 5) nrPassed ++;\r\n   else nrFailed++;\r\n}\r\n\r\nctx.NumberOfExercisesPassed = nrPassed;\r\nctx.NumberOfExercisesFailed = nrFailed;\r\n",
+      "description": "Get the number of Passed and Failed exercises on the Session (Score <5 == FAIL; Score >= 5  == PASSED)"
+    }
+  }
+]
