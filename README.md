@@ -4,9 +4,10 @@ This is a secondary project for DEISI343 Final Course Project's main Unity proje
 With the exception of the "Extra deliverables" folder on the project root, all developments are located inside the "Assets" directory, namely the Models and Scripts folders.
 Three goals are intended here:
 
-1. Implement a communication module to report treatment results, and test the whole Back-end service application stack(Nginx, Elasticsearch, Kibana and dashboards)
-2. Data generation and management structures
-3. Other helpful snippets
+1. Implement a communication module to report treatment results, and test the whole Back-end service application stack(Nginx, Elasticsearch, Kibana and dashboards);
+2. Data generation and management structures;
+3. Other helpful snippets;
+4. Provide other important deliverables.
 
 ## 1 - Data communication module
 Developments were made for a module to support communications to an Elasticsearch server, in regards to pushing treatment metrics belonging 
@@ -29,3 +30,13 @@ Two additional data structures were also implemented as Singleton objects (folde
 
 ## 3 - Other helpful snippets
 Other code experiments have also been provided here, such as a snippet for local device I/O file operations, namely for persisting and loading JSON files on a mobile phone running a Unity application (likely to be used on future updates of the Opto application).
+
+## 4 - Other important deliverables
+On the root folder of the project, an "Extra deliverables" folder was created containing some of the most important items necessary during the implementation of the entire back end infrastructure (Elasticsearch, Kibana, Nginx, Amazon Web Services helping tools).
+
+Some of these are:
+* Elasticsearch: configuration file (.yml), ingest pipelines implemented, Let's Encrypt certificates for HTTPS, authentication credentials (and more...).
+* Kibana: configuration file (.yml), enrollment token to integrate Kibana with Elasticsearch, and some commands with notes (in Portuguese) taken during initial setup.
+* Nginx: configuration file for Web server and Reverse proxy, and final prototype of a dashboard HTML shipped to production (fully working with new data sent to Elasticsearch in production).
+* Other deliverables, such as DLL dependencies for NEST .NET Elasticsearch client for a C# project, PCSP commands for file transfer between and to AWS virtual machines, Postman collection of test API calls made to Elasticsearch during development (and more...).
+
