@@ -36,7 +36,7 @@ public class ManagerScript : MonoBehaviour
 
         // -----------------
         // ** Define here the # of random Sessions to generate ** 
-        int nrSessions = 3;
+        int nrSessions = 74;
         // -----------------
 
         // * Generate [nrSessions] Sessions *
@@ -101,7 +101,7 @@ public class ManagerScript : MonoBehaviour
     // private void Start()
     // {
     //     var esManager = ESManager.Instance;
-    //     esManager.DeleteIndex(ESManager.EXERCISES_INDEX);
+    //     //esManager.DeleteIndex(ESManager.EXERCISES_INDEX);
     //     esManager.DeleteIndex(ESManager.SESSIONS_INDEX);
     // }
 
