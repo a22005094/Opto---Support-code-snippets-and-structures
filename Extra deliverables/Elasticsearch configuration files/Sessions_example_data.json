@@ -1,0 +1,427 @@
+{
+    "took": 0,
+    "timed_out": false,
+    "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 73,
+            "relation": "eq"
+        },
+        "max_score": 1.0,
+        "hits": [
+            {
+                "_index": "sessions",
+                "_id": "y_nJO4kBSr5VUTYl5gqy",
+                "_score": 1.0,
+                "_source": {
+                    "DayOfWeek": 2,
+                    "startAtHour": 18,
+                    "NumberOfExercisesFailed": 3,
+                    "endAt": "2023-04-10T18:24:00",
+                    "userId": "9a384789750b8763bd58c25e581e2bebc38c9d0d9285af79d0f9d049549b1d2d",
+                    "GoalReached": false,
+                    "startAtYear": 2023,
+                    "endAtHour": 18,
+                    "startAtDay": 10,
+                    "exercises": [
+                        {
+                            "score": 3,
+                            "challengeId": "CHALLENGE_7",
+                            "durationSeconds": 73,
+                            "startAt": "2023-07-09T18:53:48.9889229+01:00"
+                        },
+                        {
+                            "score": 4,
+                            "challengeId": "CHALLENGE_0",
+                            "durationSeconds": 18,
+                            "startAt": "2023-07-09T18:53:48.9889229+01:00"
+                        },
+                        {
+                            "score": 1,
+                            "challengeId": "CHALLENGE_12",
+                            "durationSeconds": 33,
+                            "startAt": "2023-07-09T18:53:48.9889229+01:00"
+                        },
+                        {
+                            "score": 8,
+                            "challengeId": "CHALLENGE_12",
+                            "durationSeconds": 17,
+                            "startAt": "2023-07-09T18:53:48.9889229+01:00"
+                        }
+                    ],
+                    "WeekOfYear": 15,
+                    "sessionDurationMinutes": 24,
+                    "startAtMonth": 4,
+                    "NumberOfExercisesPassed": 1,
+                    "startAt": "2023-04-10T18:00:00",
+                    "NumberOfExercises": 4
+                }
+            },
+            {
+                "_index": "sessions",
+                "_id": "zPnJO4kBSr5VUTYl5wpW",
+                "_score": 1.0,
+                "_source": {
+                    "DayOfWeek": 5,
+                    "startAtHour": 19,
+                    "NumberOfExercisesFailed": 0,
+                    "endAt": "2023-06-22T19:33:00",
+                    "userId": "9a384789750b8763bd58c25e581e2bebc38c9d0d9285af79d0f9d049549b1d2d",
+                    "GoalReached": true,
+                    "startAtYear": 2023,
+                    "endAtHour": 19,
+                    "startAtDay": 22,
+                    "exercises": [
+                        {
+                            "score": 9,
+                            "challengeId": "CHALLENGE_25",
+                            "durationSeconds": 42,
+                            "startAt": "2023-07-09T18:53:49.6218323+01:00"
+                        },
+                        {
+                            "score": 5,
+                            "challengeId": "CHALLENGE_16",
+                            "durationSeconds": 11,
+                            "startAt": "2023-07-09T18:53:49.6218323+01:00"
+                        }
+                    ],
+                    "WeekOfYear": 25,
+                    "sessionDurationMinutes": 33,
+                    "startAtMonth": 6,
+                    "NumberOfExercisesPassed": 2,
+                    "startAt": "2023-06-22T19:00:00",
+                    "NumberOfExercises": 2
+                }
+            },
+            {
+                "_index": "sessions",
+                "_id": "zfnJO4kBSr5VUTYl6QpN",
+                "_score": 1.0,
+                "_source": {
+                    "DayOfWeek": 6,
+                    "startAtHour": 19,
+                    "NumberOfExercisesFailed": 2,
+                    "endAt": "2023-07-07T19:35:00",
+                    "userId": "9a384789750b8763bd58c25e581e2bebc38c9d0d9285af79d0f9d049549b1d2d",
+                    "GoalReached": true,
+                    "startAtYear": 2023,
+                    "endAtHour": 19,
+                    "startAtDay": 7,
+                    "exercises": [
+                        {
+                            "score": 1,
+                            "challengeId": "CHALLENGE_3",
+                            "durationSeconds": 60,
+                            "startAt": "2023-07-09T18:53:50.1243188+01:00"
+                        },
+                        {
+                            "score": 4,
+                            "challengeId": "CHALLENGE_20",
+                            "durationSeconds": 9,
+                            "startAt": "2023-07-09T18:53:50.1243188+01:00"
+                        }
+                    ],
+                    "WeekOfYear": 27,
+                    "sessionDurationMinutes": 35,
+                    "startAtMonth": 7,
+                    "NumberOfExercisesPassed": 0,
+                    "startAt": "2023-07-07T19:00:00",
+                    "NumberOfExercises": 2
+                }
+            },
+            {
+                "_index": "sessions",
+                "_id": "CFu3eYkBWOp_7IWTWgrn",
+                "_score": 1.0,
+                "_source": {
+                    "DayOfWeek": 7,
+                    "startAtHour": 10,
+                    "NumberOfExercisesFailed": 3,
+                    "endAt": "2023-05-27T10:31:00",
+                    "userId": "9a384789750b8763bd58c25e581e2bebc38c9d0d9285af79d0f9d049549b1d2d",
+                    "GoalReached": true,
+                    "startAtYear": 2023,
+                    "endAtHour": 10,
+                    "startAtDay": 27,
+                    "exercises": [
+                        {
+                            "score": 4,
+                            "challengeId": "CHALLENGE_10",
+                            "durationSeconds": 26,
+                            "startAt": "2023-07-21T19:30:07.0689618+01:00"
+                        },
+                        {
+                            "score": 1,
+                            "challengeId": "CHALLENGE_15",
+                            "durationSeconds": 66,
+                            "startAt": "2023-07-21T19:30:07.0689618+01:00"
+                        },
+                        {
+                            "score": 1,
+                            "challengeId": "CHALLENGE_10",
+                            "durationSeconds": 17,
+                            "startAt": "2023-07-21T19:30:07.0689618+01:00"
+                        },
+                        {
+                            "score": 6,
+                            "challengeId": "CHALLENGE_8",
+                            "durationSeconds": 25,
+                            "startAt": "2023-07-21T19:30:07.0689618+01:00"
+                        }
+                    ],
+                    "WeekOfYear": 21,
+                    "sessionDurationMinutes": 31,
+                    "startAtMonth": 5,
+                    "NumberOfExercisesPassed": 1,
+                    "startAt": "2023-05-27T10:00:00",
+                    "NumberOfExercises": 4
+                }
+            },
+            {
+                "_index": "sessions",
+                "_id": "CVu3eYkBWOp_7IWTWwpv",
+                "_score": 1.0,
+                "_source": {
+                    "DayOfWeek": 3,
+                    "startAtHour": 20,
+                    "NumberOfExercisesFailed": 0,
+                    "endAt": "2023-04-25T20:39:00",
+                    "userId": "9a384789750b8763bd58c25e581e2bebc38c9d0d9285af79d0f9d049549b1d2d",
+                    "GoalReached": true,
+                    "startAtYear": 2023,
+                    "endAtHour": 20,
+                    "startAtDay": 25,
+                    "exercises": [
+                        {
+                            "score": 8,
+                            "challengeId": "CHALLENGE_25",
+                            "durationSeconds": 11,
+                            "startAt": "2023-07-21T19:30:07.7995985+01:00"
+                        },
+                        {
+                            "score": 10,
+                            "challengeId": "CHALLENGE_3",
+                            "durationSeconds": 72,
+                            "startAt": "2023-07-21T19:30:07.7995985+01:00"
+                        },
+                        {
+                            "score": 6,
+                            "challengeId": "CHALLENGE_11",
+                            "durationSeconds": 16,
+                            "startAt": "2023-07-21T19:30:07.7995985+01:00"
+                        },
+                        {
+                            "score": 9,
+                            "challengeId": "CHALLENGE_24",
+                            "durationSeconds": 47,
+                            "startAt": "2023-07-21T19:30:07.7995985+01:00"
+                        }
+                    ],
+                    "WeekOfYear": 17,
+                    "sessionDurationMinutes": 39,
+                    "startAtMonth": 4,
+                    "NumberOfExercisesPassed": 4,
+                    "startAt": "2023-04-25T20:00:00",
+                    "NumberOfExercises": 4
+                }
+            },
+            {
+                "_index": "sessions",
+                "_id": "Clu3eYkBWOp_7IWTXQpl",
+                "_score": 1.0,
+                "_source": {
+                    "DayOfWeek": 7,
+                    "startAtHour": 12,
+                    "NumberOfExercisesFailed": 1,
+                    "endAt": "2023-06-10T12:30:00",
+                    "userId": "9a384789750b8763bd58c25e581e2bebc38c9d0d9285af79d0f9d049549b1d2d",
+                    "GoalReached": true,
+                    "startAtYear": 2023,
+                    "endAtHour": 12,
+                    "startAtDay": 10,
+                    "exercises": [
+                        {
+                            "score": 6,
+                            "challengeId": "CHALLENGE_18",
+                            "durationSeconds": 31,
+                            "startAt": "2023-07-21T19:30:08.3028139+01:00"
+                        },
+                        {
+                            "score": 0,
+                            "challengeId": "CHALLENGE_17",
+                            "durationSeconds": 32,
+                            "startAt": "2023-07-21T19:30:08.3028139+01:00"
+                        },
+                        {
+                            "score": 8,
+                            "challengeId": "CHALLENGE_7",
+                            "durationSeconds": 71,
+                            "startAt": "2023-07-21T19:30:08.3028139+01:00"
+                        }
+                    ],
+                    "WeekOfYear": 23,
+                    "sessionDurationMinutes": 30,
+                    "startAtMonth": 6,
+                    "NumberOfExercisesPassed": 2,
+                    "startAt": "2023-06-10T12:00:00",
+                    "NumberOfExercises": 3
+                }
+            },
+            {
+                "_index": "sessions",
+                "_id": "C1u3eYkBWOp_7IWTXwpa",
+                "_score": 1.0,
+                "_source": {
+                    "DayOfWeek": 6,
+                    "startAtHour": 20,
+                    "NumberOfExercisesFailed": 2,
+                    "endAt": "2023-07-14T20:30:00",
+                    "userId": "9a384789750b8763bd58c25e581e2bebc38c9d0d9285af79d0f9d049549b1d2d",
+                    "GoalReached": true,
+                    "startAtYear": 2023,
+                    "endAtHour": 20,
+                    "startAtDay": 14,
+                    "exercises": [
+                        {
+                            "score": 2,
+                            "challengeId": "CHALLENGE_17",
+                            "durationSeconds": 10,
+                            "startAt": "2023-07-21T19:30:08.8056238+01:00"
+                        },
+                        {
+                            "score": 1,
+                            "challengeId": "CHALLENGE_19",
+                            "durationSeconds": 18,
+                            "startAt": "2023-07-21T19:30:08.8056238+01:00"
+                        }
+                    ],
+                    "WeekOfYear": 28,
+                    "sessionDurationMinutes": 30,
+                    "startAtMonth": 7,
+                    "NumberOfExercisesPassed": 0,
+                    "startAt": "2023-07-14T20:00:00",
+                    "NumberOfExercises": 2
+                }
+            },
+            {
+                "_index": "sessions",
+                "_id": "DFu3eYkBWOp_7IWTYQpP",
+                "_score": 1.0,
+                "_source": {
+                    "DayOfWeek": 2,
+                    "startAtHour": 18,
+                    "NumberOfExercisesFailed": 3,
+                    "endAt": "2023-07-10T18:16:00",
+                    "userId": "9a384789750b8763bd58c25e581e2bebc38c9d0d9285af79d0f9d049549b1d2d",
+                    "GoalReached": false,
+                    "startAtYear": 2023,
+                    "endAtHour": 18,
+                    "startAtDay": 10,
+                    "exercises": [
+                        {
+                            "score": 4,
+                            "challengeId": "CHALLENGE_16",
+                            "durationSeconds": 58,
+                            "startAt": "2023-07-21T19:30:09.3059290+01:00"
+                        },
+                        {
+                            "score": 2,
+                            "challengeId": "CHALLENGE_14",
+                            "durationSeconds": 59,
+                            "startAt": "2023-07-21T19:30:09.3064690+01:00"
+                        },
+                        {
+                            "score": 6,
+                            "challengeId": "CHALLENGE_1",
+                            "durationSeconds": 13,
+                            "startAt": "2023-07-21T19:30:09.3064690+01:00"
+                        },
+                        {
+                            "score": 1,
+                            "challengeId": "CHALLENGE_0",
+                            "durationSeconds": 70,
+                            "startAt": "2023-07-21T19:30:09.3064690+01:00"
+                        }
+                    ],
+                    "WeekOfYear": 28,
+                    "sessionDurationMinutes": 16,
+                    "startAtMonth": 7,
+                    "NumberOfExercisesPassed": 1,
+                    "startAt": "2023-07-10T18:00:00",
+                    "NumberOfExercises": 4
+                }
+            },
+            {
+                "_index": "sessions",
+                "_id": "DVu3eYkBWOp_7IWTYwpG",
+                "_score": 1.0,
+                "_source": {
+                    "DayOfWeek": 4,
+                    "startAtHour": 19,
+                    "NumberOfExercisesFailed": 1,
+                    "endAt": "2023-06-21T19:43:00",
+                    "userId": "9a384789750b8763bd58c25e581e2bebc38c9d0d9285af79d0f9d049549b1d2d",
+                    "GoalReached": true,
+                    "startAtYear": 2023,
+                    "endAtHour": 19,
+                    "startAtDay": 21,
+                    "exercises": [
+                        {
+                            "score": 0,
+                            "challengeId": "CHALLENGE_11",
+                            "durationSeconds": 31,
+                            "startAt": "2023-07-21T19:30:09.8080760+01:00"
+                        }
+                    ],
+                    "WeekOfYear": 25,
+                    "sessionDurationMinutes": 43,
+                    "startAtMonth": 6,
+                    "NumberOfExercisesPassed": 0,
+                    "startAt": "2023-06-21T19:00:00",
+                    "NumberOfExercises": 1
+                }
+            },
+            {
+                "_index": "sessions",
+                "_id": "Dlu3eYkBWOp_7IWTZQo7",
+                "_score": 1.0,
+                "_source": {
+                    "DayOfWeek": 3,
+                    "startAtHour": 18,
+                    "NumberOfExercisesFailed": 0,
+                    "endAt": "2023-06-27T18:22:00",
+                    "userId": "9a384789750b8763bd58c25e581e2bebc38c9d0d9285af79d0f9d049549b1d2d",
+                    "GoalReached": false,
+                    "startAtYear": 2023,
+                    "endAtHour": 18,
+                    "startAtDay": 27,
+                    "exercises": [
+                        {
+                            "score": 9,
+                            "challengeId": "CHALLENGE_24",
+                            "durationSeconds": 73,
+                            "startAt": "2023-07-21T19:30:10.3096347+01:00"
+                        },
+                        {
+                            "score": 8,
+                            "challengeId": "CHALLENGE_23",
+                            "durationSeconds": 38,
+                            "startAt": "2023-07-21T19:30:10.3096347+01:00"
+                        }
+                    ],
+                    "WeekOfYear": 26,
+                    "sessionDurationMinutes": 22,
+                    "startAtMonth": 6,
+                    "NumberOfExercisesPassed": 2,
+                    "startAt": "2023-06-27T18:00:00",
+                    "NumberOfExercises": 2
+                }
+            }
+        ]
+    }
+}

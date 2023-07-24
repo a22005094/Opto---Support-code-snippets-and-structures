@@ -1,0 +1,1378 @@
+{
+	"info": {
+		"_postman_id": "2374b35d-88d0-434e-8202-de9708500fed",
+		"name": "Elastic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24993931"
+	},
+	"item": [
+		{
+			"name": "(OLD) Primeiros testes - \"MyTweetIndex\"",
+			"item": [
+				{
+					"name": "Step0_Consultar_Index_Tweet",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://192.168.64.128:9200/my-tweet-index",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"128"
+							],
+							"port": "9200",
+							"path": [
+								"my-tweet-index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step0_Consultar_Index_Company",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://192.168.64.128:9200/company",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"128"
+							],
+							"port": "9200",
+							"path": [
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step1_CriarIndex",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://192.168.64.128:9200/company",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"128"
+							],
+							"port": "9200",
+							"path": [
+								"company"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Elasticsearch @ VM (localhost)",
+			"item": [
+				{
+					"name": "Testing requests here",
+					"item": [
+						{
+							"name": "Criar Indice 'emtestes'",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "elastic",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mappings\": {\r\n        \"dynamic\": \"strict\",\r\n        \"properties\": {\r\n            \"NAME\": {\r\n                \"type\": \"text\"\r\n            },\r\n            \"AGE\": {\r\n                \"type\": \"integer\"\r\n            }\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://192.168.64.131:9200/emtestes",
+									"protocol": "https",
+									"host": [
+										"192",
+										"168",
+										"64",
+										"131"
+									],
+									"port": "9200",
+									"path": [
+										"emtestes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Info index 'emtestes'",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "elastic",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://192.168.64.131:9200/emtestes",
+									"protocol": "https",
+									"host": [
+										"192",
+										"168",
+										"64",
+										"131"
+									],
+									"port": "9200",
+									"path": [
+										"emtestes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Info index 'meus_testes_2'",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "elastic",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://192.168.64.131:9200/meus_testes_2",
+									"protocol": "https",
+									"host": [
+										"192",
+										"168",
+										"64",
+										"131"
+									],
+									"port": "9200",
+									"path": [
+										"meus_testes_2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar docs @ 'emtestes'",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "elastic",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://192.168.64.131:9200/emtestes/_search",
+									"protocol": "https",
+									"host": [
+										"192",
+										"168",
+										"64",
+										"131"
+									],
+									"port": "9200",
+									"path": [
+										"emtestes",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add/update Doc - Specific ID",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "elastic",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"NAME\": \"2023-03-03\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://192.168.64.131:9200/emtestes/_doc/3",
+									"protocol": "https",
+									"host": [
+										"192",
+										"168",
+										"64",
+										"131"
+									],
+									"port": "9200",
+									"path": [
+										"emtestes",
+										"_doc",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET todos Documentos",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "elastic",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://192.168.64.131:9200/exercises/_search",
+									"protocol": "https",
+									"host": [
+										"192",
+										"168",
+										"64",
+										"131"
+									],
+									"port": "9200",
+									"path": [
+										"exercises",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Info index 'exercises'",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "elastic",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://192.168.64.131:9200/exercises",
+									"protocol": "https",
+									"host": [
+										"192",
+										"168",
+										"64",
+										"131"
+									],
+									"port": "9200",
+									"path": [
+										"exercises"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Info index 'sessions'",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "elastic",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://192.168.64.131:9200/sessions",
+									"protocol": "https",
+									"host": [
+										"192",
+										"168",
+										"64",
+										"131"
+									],
+									"port": "9200",
+									"path": [
+										"sessions"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "------ Gerais",
+					"request": {
+						"method": "LOCK",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "List Indexes (apagar 'json' mostra em Tabela)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://192.168.64.131:9200/_cat/indices?format=json&pretty",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"131"
+							],
+							"port": "9200",
+							"path": [
+								"_cat",
+								"indices"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "json"
+								},
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info - Index 'exercises'",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://192.168.64.131:9200/exercises?pretty",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"131"
+							],
+							"port": "9200",
+							"path": [
+								"exercises"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info - Index 'sessions'",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://192.168.64.131:9200/sessions?pretty",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"131"
+							],
+							"port": "9200",
+							"path": [
+								"sessions"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar mappings do Index 'exercises'",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://192.168.64.131:9200/exercises/_mapping?pretty",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"131"
+							],
+							"port": "9200",
+							"path": [
+								"exercises",
+								"_mapping"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Drop Index 'exercises'",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://192.168.64.131:9200/exercises?pretty",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"131"
+							],
+							"port": "9200",
+							"path": [
+								"exercises"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Drop Index 'sessions'",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://192.168.64.131:9200/sessions?pretty",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"131"
+							],
+							"port": "9200",
+							"path": [
+								"sessions"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "------ CRUD Documents @ 'exercises'",
+					"request": {
+						"method": "LOCK",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Documents do Index 'exercises'",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://192.168.64.131:9200/exercises/_search?pretty",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"131"
+							],
+							"port": "9200",
+							"path": [
+								"exercises",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Documents do Index 'sessions'",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://192.168.64.131:9200/sessions/_search?pretty",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"131"
+							],
+							"port": "9200",
+							"path": [
+								"sessions",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET 'Sessions' Document by ID",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://192.168.64.131:9200/sessions/_doc/zPnJO4kBSr5VUTYl5wpW",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"131"
+							],
+							"port": "9200",
+							"path": [
+								"sessions",
+								"_doc",
+								"zPnJO4kBSr5VUTYl5wpW"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Document By ID (sessions)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://192.168.64.131:9200/sessions/_doc/TltZeokBWOp_7IWTywok",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"131"
+							],
+							"port": "9200",
+							"path": [
+								"sessions",
+								"_doc",
+								"TltZeokBWOp_7IWTywok"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add/update Doc - with Auto ID",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"DayOfWeek\": 3,\r\n    \"startAtHour\": 18,\r\n    \"NumberOfExercisesFailed\": 0,\r\n    \"endAt\": \"2023-06-27T18:22:00\",\r\n    \"userId\": \"9a384789750b8763bd58c25e581e2bebc38c9d0d9285af79d0f9d049549b1d2d\",\r\n    \"GoalReached\": false,\r\n    \"startAtYear\": 2023,\r\n    \"endAtHour\": 18,\r\n    \"startAtDay\": 27,\r\n    \"exercises\": [\r\n        {\r\n            \"score\": 9,\r\n            \"challengeId\": \"CHALLENGE_24\",\r\n            \"durationSeconds\": 73,\r\n            \"startAt\": \"2023-07-21T19:30:10.3096347+01:00\"\r\n        },\r\n        {\r\n            \"score\": 8,\r\n            \"challengeId\": \"CHALLENGE_23\",\r\n            \"durationSeconds\": 38,\r\n            \"startAt\": \"2023-07-21T19:30:10.3096347+01:00\"\r\n        }\r\n    ],\r\n    \"WeekOfYear\": 26,\r\n    \"sessionDurationMinutes\": 22,\r\n    \"startAtMonth\": 6,\r\n    \"NumberOfExercisesPassed\": 2,\r\n    \"startAt\": \"2023-06-27T18:00:00\",\r\n    \"NumberOfExercises\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://192.168.64.131:9200/sessions/_doc/",
+							"protocol": "https",
+							"host": [
+								"192",
+								"168",
+								"64",
+								"131"
+							],
+							"port": "9200",
+							"path": [
+								"sessions",
+								"_doc",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Elasticsearch @ AWS EC2 (production)",
+			"item": [
+				{
+					"name": "List all Indices",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{elasticPWD}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://deisi343.pt/elasticsearch/_cat/indices?format=json&pretty",
+							"protocol": "https",
+							"host": [
+								"deisi343",
+								"pt"
+							],
+							"path": [
+								"elasticsearch",
+								"_cat",
+								"indices"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "json"
+								},
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test service",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{elasticPWD}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.deisi343.pt/elasticsearch",
+							"protocol": "https",
+							"host": [
+								"www",
+								"deisi343",
+								"pt"
+							],
+							"path": [
+								"elasticsearch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info about Index 'sessions'",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{elasticPWD}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.deisi343.pt/elasticsearch/sessions?pretty",
+							"protocol": "https",
+							"host": [
+								"www",
+								"deisi343",
+								"pt"
+							],
+							"path": [
+								"elasticsearch",
+								"sessions"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List documents @ 'sessions' index",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{elasticPWD}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.deisi343.pt/elasticsearch/sessions/_search?pretty",
+							"protocol": "https",
+							"host": [
+								"www",
+								"deisi343",
+								"pt"
+							],
+							"path": [
+								"elasticsearch",
+								"sessions",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "-------------- Index mgmt",
+					"request": {
+						"method": "LOCK",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Drop Index 'exercises'",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{elasticPWD}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://www.deisi343.pt/elasticsearch/exercises?pretty",
+							"protocol": "https",
+							"host": [
+								"www",
+								"deisi343",
+								"pt"
+							],
+							"path": [
+								"elasticsearch",
+								"exercises"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Drop Index 'sessions'",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{elasticPWD}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://www.deisi343.pt/elasticsearch/sessions?pretty",
+							"protocol": "https",
+							"host": [
+								"www",
+								"deisi343",
+								"pt"
+							],
+							"path": [
+								"elasticsearch",
+								"sessions"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "-------------- Other tests",
+					"request": {
+						"method": "LOCK",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Document by [_id=1]",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{elasticPWD}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://www.deisi343.pt/elasticsearch/exercises/_search",
+							"protocol": "https",
+							"host": [
+								"www",
+								"deisi343",
+								"pt"
+							],
+							"path": [
+								"elasticsearch",
+								"exercises",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Document By ID (exercises)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{elasticPWD}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://www.deisi343.pt/elasticsearch/exercises/_doc/sGn9JIgB58K2Z0o8xqAx",
+							"protocol": "https",
+							"host": [
+								"www",
+								"deisi343",
+								"pt"
+							],
+							"path": [
+								"elasticsearch",
+								"exercises",
+								"_doc",
+								"sGn9JIgB58K2Z0o8xqAx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Document By ID (sessions)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{elasticPWD}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "elastic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://www.deisi343.pt/elasticsearch/sessions/_doc/smn-JIgB58K2Z0o8E6Ag",
+							"protocol": "https",
+							"host": [
+								"www",
+								"deisi343",
+								"pt"
+							],
+							"path": [
+								"elasticsearch",
+								"sessions",
+								"_doc",
+								"smn-JIgB58K2Z0o8E6Ag"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

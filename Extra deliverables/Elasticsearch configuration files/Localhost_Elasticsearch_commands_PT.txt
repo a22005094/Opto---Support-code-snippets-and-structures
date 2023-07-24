@@ -1,0 +1,57 @@
+Dados Elasticsearch
+> USERNAME:       elastic
+> PASSWORD (NEW): 123123
+
+----------------------
+   Arrancar serviço
+----------------------
+> sudo systemctl start elasticsearch.service
+> sudo systemctl stop elasticsearch.service
+
+
+----------------------
+   LIGAÇÃO @ WINDOWS
+----------------------
+curl --insecure -u elastic https://192.168.64.128:9200
+
+
+----------------------
+   LIGAÇÃO @ UBUNTU
+----------------------
+curl --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic https://localhost:9200
+ 
+Note: [--cacert] is the Path to the generated http_ca.crt certificate for the HTTP layer)
+
+
+----------------------
+      LIGAÇÃO C#
+----------------------
+> Executar o programa.
+
+> IMPORTANTE: ao executar o programa C# em Windows, vai dar erros com este certificado.
+  Tem de se adicionar o certificado na Store, em:
+  - [Autoridades de certificação de raiz fidedigna] -> [Certificados] -> botão direito -> Importar... -> (selecionar o certificado)
+
+---
+
+Se a ligação for realizada com sucesso, devolve algo semelhante a isto:
+
+{
+  "name" : "b2-vm",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "6AA95jtuQ3q7QvWYJ4KQJQ",
+  "version" : {
+    "number" : "8.6.2",
+    "build_flavor" : "default",
+    "build_type" : "deb",
+    "build_hash" : "2d58d0f136141f03239816a4e360a8d17b6d8f29",
+    "build_date" : "2023-02-13T09:35:20.314882762Z",
+    "build_snapshot" : false,
+    "lucene_version" : "9.4.2",
+    "minimum_wire_compatibility_version" : "7.17.0",
+    "minimum_index_compatibility_version" : "7.0.0"
+  },
+  "tagline" : "You Know, for Search"
+}
+
+---

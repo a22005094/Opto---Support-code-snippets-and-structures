@@ -1,0 +1,147 @@
+###############################################################################
+# You should look at the following URL's in order to grasp a solid understanding
+# of Nginx configuration files in order to fully unleash the power of Nginx.
+# https://www.nginx.com/resources/wiki/start/
+# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+# https://wiki.debian.org/Nginx/DirectoryStructure
+#
+# In most cases, administrators will remove this file from sites-enabled/ and
+# leave it as reference inside of sites-available where it will continue to be
+# updated by the nginx packaging team.
+#
+# This file will automatically load configuration files provided by other
+# applications, such as Drupal or Wordpress. These applications will be made
+# available underneath a path with that package name, such as /drupal8.
+#
+# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+###############################################################################
+
+
+# *** DEISI343 ***
+# Nginx Web server & Reverse Proxy configuration file.
+# Configurations were done here to manage routes to the Web server, namely Elasticsearch & Kibana resources redirection to the Back-end server, and displaying results Dashboards.
+
+# ---------- EXPERIMENTAL CONFIGURATIONS ----------
+# Some configurations were attempted but since then deprecated.
+#
+# ----------------------------
+# A) HTTP -> HTTPS redirection - Route HTTP traffic to HTTPS.
+# ----------------------------
+# 
+# server {
+#	listen 80;
+#	server_name _;
+#	#server_name www.deisi343.pt;
+#	return 301 https://$host$request_uri;
+# }
+#
+# ---------------------------------
+# B) Non-[www] -> [www] redirection
+# ---------------------------------
+# Redirects non-www subdomain requests to include subdomain www.
+# Not the most critical configuration, but allows a neater, more professional access to the Website via Browser.
+# Credits to the source where the example was based on: https://www.digitalocean.com/community/tutorials/how-to-redirect-www-to-non-www-with-nginx-on-centos-7
+#
+# server {
+#	server_name deisi343.pt;
+#	return 301 https://www.deisi343.pt$request_uri;
+#
+#	# (Old - keeps original scheme, but we should, just enforce HTTPS directly here)
+#	# return 301 $scheme://www.deisi343.pt$request_uri;
+# }
+
+
+server {
+      # listen 80  ;    # (OLD - by using HTTPS, it is unadvisable to keep HTTP)
+	listen 443 ssl; # managed by Certbot
+
+	server_name www.deisi343.pt;
+
+	root /usr/share/nginx/html;
+	index index.html;
+
+	proxy_set_header Host $host;
+	proxy_set_header X-Real-IP $remote_addr;
+	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+	# **************************
+	# *** Manage server URIs ***
+	# **************************
+
+
+	# * Elasticsearch redirection
+	location /elasticsearch {
+		# Rewrite the URL to keep only the part after elasticsearch URI identifier
+		rewrite     ^/elasticsearch/(.*)$ /$1 break;
+		proxy_pass  https://10.0.2.171:9200/;
+	}
+
+
+	# * Kibana redirection
+	location /kibana {
+		# Rewrite the URL to keep only the part after kibana URI identifier
+		rewrite     ^/kibana/(.*)$ /$1 break;
+		proxy_pass  https://10.0.2.171:5601/;
+	}
+
+
+	# * Dashboards page
+	location /dashboard {
+		# Some attempts were made into redirecting an URI to a specific HTML page:
+		# 1 -> proxy_pass  https://www.deisi343.pt/dashboard1.html; # Doesn't work.
+		# 2 -> ...
+
+		try_files  /dashboard.html =404;
+		# (?) rewrite ^/dashboard(.*)$ /dashboard.html$1 last;
+	}	
+
+
+	# --------- OTHERS ---------
+
+	
+	# * Home page
+	location = / {
+		# Try serving index.html file, otherwise fall-back to error HTTP 404.
+		try_files   /index.html  =404;
+	}
+
+	
+	# * Block direct access to HTML files.
+	# We want to enable access through the URIs, not uncontrolled, direct access to files.
+	location ~* \.html$ {
+		return      404;
+	}
+
+
+	# * Other URI redirections (if the request matches none of the URIs above declared)
+	#location / {
+	#	# Fall-back to HTTP 404, for any other URI requested.
+	#	return      418;
+	#}
+
+
+	# --------- EXPERIMENTAL FEATURES ---------
+	
+	# A) 	Safety measure to block access to direct resources/files
+	#    	on NGINX hosted directory (/usr/share/nginx/html/).
+	#	Example: .HTML files
+	#
+	# (v1)	
+	# location = /dashboard1.html {
+	# 	# proxy_pass  https://www.google.pt/;  # just a test... :)
+	# 	return     404;
+	# }
+	#
+	# (v2 - used above)
+	# location ~* \.html$ {
+	#	return     404;
+	# }	
+	# -----------------------------------------
+
+
+	# listen [::]:443 ssl ipv6only=on; # managed by Certbot
+	ssl_certificate /etc/letsencrypt/live/www.deisi343.pt/fullchain.pem; # managed by Certbot
+	ssl_certificate_key /etc/letsencrypt/live/www.deisi343.pt/privkey.pem; # managed by Certbot
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
