@@ -14,15 +14,25 @@ namespace Assets.Models
 
         // * Attributes
         // All were kept Public to maintain full support with NEST elasticsearch client.
-        public string UserId { get; } // UserID this session belongs to
-        public DateTime StartAt { get; set; } // Timestamp beginning of session
-        public DateTime EndAt { get; set; } // Timestamp end of session
 
-        [Nested] // [Nested] will output each exercise here as its own object
-        public List<Exercise> Exercises { get; set; } // List of exercises completed during this Session
+        // UserID this session belongs to
+        public string UserId { get; }
 
-        [Ignore] // [Ignore] means this field will not be mapped to Elasticsearch.
-        public bool IsSaved { get; set; } // Indicates if this object has been saved to ElasticSearch.
+        // Timestamp beginning of session
+        public DateTime StartAt { get; set; }
+
+        // Timestamp end of session
+        public DateTime EndAt { get; set; }
+
+        // List of exercises completed during this Session
+        // (OLD) -> [Nested]  // Isolates each exercise as its own object in Elasticsearch. Unfortunately, does not work for Data Visualizations.
+        // (NEW) -> [Object]  // (redundant) Defaulting to Object will flatten multiple exercises' parameters
+        //                        into plain Arrays, 1 array per Parameter - this allows aggregations for DataViz purposes.
+        [Object] public List<Exercise> Exercises { get; set; }
+
+        // Indicates if this object has been saved to ElasticSearch.
+        // [Ignore] means this field will not be mapped to Elasticsearch.
+        [Ignore] private bool IsSaved { get; set; }
 
 
         // * Constructor(s)

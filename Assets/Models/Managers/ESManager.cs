@@ -1,5 +1,7 @@
 ﻿using Nest;
 using System;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using UnityEngine;
 using Index = Nest.Index;
@@ -108,19 +110,28 @@ namespace Assets.Models.Managers
                         // ------------------------------------------------------------
                         try
                         {
-                            // Endpoint URI
-                            // (v1) Uri uriServidor = new Uri("https://192.168.64.131:9200");
-                            // (v2) Uri uriServidor = new Uri("http://35.83.233.168/elasticsearch");
+                            // *******************************
+                            // OPTION #1: Configuration for VM
+                            // *******************************
+                            // * Endpoint URI
+                            //   Uri uriServer = new Uri("https://192.168.64.131:9200");
+                            // * X509 Cert fingerprint (currently using Elasticsearch auto-generated certificate)
+                            //  var x509cert = new X509Certificate2(File.ReadAllBytes(@"C:\http_ca.crt"));
+                            // * Certificate Fingerprint & Authentication
+                            //  clientSettings.ClientCertificate(x509cert);
+
+                            // ***************************************************
+                            // OPTION #2: Configuration for Production (EC2 @ AWS)
+                            // ***************************************************
+                            // * Endpoint URI
                             Uri uriServer = new Uri("https://www.deisi343.pt/elasticsearch");
+
+                            //
+
                             var clientSettings = new ConnectionSettings(uriServer);
+                            //clientSettings.BasicAuthentication("elastic", "123123"); // for VM
+                            clientSettings.BasicAuthentication("elastic", "ekFV-epAKGu7OssZPKzK"); // for Production
 
-                            // ** DEPRECATED **
-                            // X509 Cert fingerprint (currently using Elasticsearch auto-generated certificate)
-                            // var x509cert = new X509Certificate2(File.ReadAllBytes(@"C:\http_ca.crt"));
-
-                            // Certificate Fingerprint & Authentication
-                            //clientSettings.ClientCertificate(x509cert);
-                            clientSettings.BasicAuthentication("elastic", "ekFV-epAKGu7OssZPKzK");
 
                             // *** DEPRECATED - The Index to work on will depend on the context of the API call! ***
                             // Default Index to point to (it can always be changed during server requests)
@@ -243,7 +254,23 @@ namespace Assets.Models.Managers
                 .IndexAsync(session,
                     selector => selector
                         .Index(SESSIONS_INDEX)
-                        .Pipeline("Pipeline_Handle_Session_Metrics")
+
+                        //
+                        //  Define the data ingestion Pipelines to use.
+                        //  Internally, the main Pipeline is responsible
+                        //  for executing all necessary Pipelines - namely,
+                        //  a first pipeline for Session data metrics,
+                        //  and a second one for Exercises data metrics.
+                        //
+                        .Pipeline("Pipeline_Session_and_Exercise_metrics")
+
+                    // (Commented - done above)
+                    // Add ingest pipeline for Session data
+                    //.Pipeline("Pipeline_Handle_Session_Metrics")
+
+                    // (Commented - done above)
+                    // Add ingest pipeline for Exercises data
+                    //.Pipeline("Pipeline_Handle_Exercise_Metrics")
                 );
 
             if (response.IsValid)
